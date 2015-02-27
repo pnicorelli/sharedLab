@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>wwCms - default theme</title>
+
+<style>
+html, body, div, span, ul, li, a{margin:0px, padding:0px; background: #dfdfdf;}
+#wrapper{width:100%; float:left;}
+#sidebar{ float:left; padding-right:20px; margin-right:20px; border-right: 5px solid #efefef; height:200px;}
+#content{ float:left;}
+</style>
+
+    </head>
+    <body>
+<div id="wrapper">
+      <div id="sidebar">
+      {% include 'sidebar.html' %}
+      </div>
+
+      <div id="content">
+        {{ content }}
+      </div>
+</div>
+
+    </body>
+</html>

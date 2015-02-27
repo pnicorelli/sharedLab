@@ -1,0 +1,20 @@
+{
+    "name": "pnicorelli/sharedLab",
+    "require": {
+
+      "symfony/http-kernel": "~2.6",
+      "twig/twig": "~1.0"
+    },
+    "authors": [
+        {
+            "name": "Paolo -Willy- Nicorelli",
+            "email": "p.nicorelli@gmail.com"
+        }
+    ],
+    "autoload": {
+		 "psr-4": {
+			 "wwcms\\": "lib/",
+			 "module\\": "app/"
+		 }
+    }
+}
