@@ -6,20 +6,21 @@ class App{
 
   public function run(){
     try{
-      $router = new Router();
+      // map the route
+      $router = new core\Route;
       $router->mapFromRequest();
 
+      // load the resources
+      $mf = new core\ModuleFactory;
+      $mf->setController( $router->getController() );
+      $mf->setAction( $router->getAction() );
 
-      $loader = new \Twig_Loader_Filesystem( dirname(__DIR__)."/templates/default/" );
-      //$twig = new \Twig_Environment($loader, array('cache' => dirname(__DIR__)."/temp"));
-      $twig = new \Twig_Environment($loader, array('cache' => false, 'autoescape'=>false));
+      // get the response
+      $response = $mf->make( );
 
-      $cClass = $router->getController();
-      $cObj = new $cClass();
-      $cAction = $router->getAction();
-
-      $template = $twig->loadTemplate('index.html');
-      echo $template->render( array('content' => $cObj->$cAction(), 'navigation' => $cObj->getMenu() ));
+      // render it
+      $render = new Render();
+      $render->render( $response );
 
     } catch ( \Exception $e){
       echo "<pre>";

@@ -1,11 +1,18 @@
 <?php
-namespace wwcms;
+namespace wwcms\Core;
 
 use Symfony\Component\HttpFoundation\Request;
 
-class Router{
+class Route{
   private $controller;
   private $action;
+
+  public function __construct($path = null){
+      if( !is_null($path) ){
+        $this->loadFromPath( $path );
+      }
+      return;
+  }
 
   public function getController(){
     return $this->controller;
@@ -31,8 +38,8 @@ class Router{
     }
     return;
   }
-
-  private function mapRequest(){
+  
+  public function loadFromRequest(){
     $request = Request::createFromGlobals();
     $components = explode("/", $request->getPathInfo());
     $components = array_filter($components , 'strlen' );
