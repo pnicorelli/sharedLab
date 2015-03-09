@@ -1,6 +1,6 @@
 <?php
 include ("./vendor/autoload.php");
-//yyyyy
+//y
 use wwcms\App;
 $app = new App();
 
