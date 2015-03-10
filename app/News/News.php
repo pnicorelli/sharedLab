@@ -1,7 +1,7 @@
 <?php
-namespace module\News;
+namespace module\products;
 
-class News extends \wwcms\Module{
+class products{
 
   public function yoooAction(){
     return "yooooo";

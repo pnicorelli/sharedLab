@@ -9,48 +9,37 @@ class ModuleFactory{
 
   }
 
-  public function setController( $controller ){
-    if ( !class_exists( $controller, true) ){
-      $this->controller = $controller;
-    } else {
-      $this->controller = null;
+  /**
+   * Load the controller, launch the method and add the output on the Response
+   * @param  Route    $route    [The parsed route]
+   * @param  Response $response [Reference to the response]
+   */
+  public function build(Route $route, Response &$response){
+    try{
+      $objectController = $this->loadObject($route);
+      $action = $route->getAction();
+      $response->add( $objectController->$action() );
+    } catch ( \Exception $e ){
+      $response->add( $e );
     }
     return;
   }
 
-  public function setAction( $action ){
-    $classController = $this->controller;
+  /**
+   * Check if class & method exists
+   * @param Route $route [The parsed route]
+   */
+  public function loadObject(Route $route){
+    $classController = $route->getController();
+    if( !class_exists($classController) ){
+      throw new \Exception("Class <".$route->getController().">not found");
+    }
     $objectController = new $classController();
-    $action = $this->action;
+    $action = $route->getAction();
     if( !method_exists($objectController, $action) ){
-      $this->action = $action;
-    } else {
-      $this->action = null;
+      throw new \Exception( "Method <". $route->getController() ."::".$route->getAction()."> not implemented" );
     }
-    return;
-
-  }
-
-  public function make( ){
-    if( is_null( $this->controller ) ){
-      throw new Exception( "Unable to instantiate from <".$this->controller.">");
-    }
-    if( is_null( $this->action ) ){
-      throw new Exception( "Unable to call  <".$this->controller."::".$this->action.">");
-    }
-    if( !$this->allowed() ){
-      throw new Exception( "Not Authorized" );
-    }
-
-    $classController = $this->controller;
-    $objectController = new $classController();
-    $action = $this->action;
-    
-    return $objectController->$action();
-  }
-
-  public function allowed(){
-    return true;
+    return $objectController;
   }
 
 }

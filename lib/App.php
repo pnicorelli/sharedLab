@@ -7,20 +7,18 @@ class App{
   public function run(){
     try{
       // map the route
-      $router = new core\Route;
-      $router->mapFromRequest();
+      $route = new Core\Route;
+      $route->mapFromRequest();
 
-      // load the resources
-      $mf = new core\ModuleFactory;
-      $mf->setController( $router->getController() );
-      $mf->setAction( $router->getAction() );
+      // create an empty Response
+      $response = new Core\Response;
+
+      // Build the Module and fill response
+      $mf = new Core\ModuleFactory;
+      $mf->build( $route, $response );
 
       // get the response
-      $response = $mf->make( );
-
-      // render it
-      $render = new Render();
-      $render->render( $response );
+      $response->flush();
 
     } catch ( \Exception $e){
       echo "<pre>";
