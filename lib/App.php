@@ -21,6 +21,7 @@ class App{
       $response->flush();
 
     } catch ( \Exception $e){
+      echo "<h1>APP Exception</h1>";
       echo "<pre>";
       echo $e->__toString();
       echo "</pre>";

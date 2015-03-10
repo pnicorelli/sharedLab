@@ -1,10 +1,10 @@
 <?php
 namespace Components\Index;
 
-class Index{
+class Index extends \wwcms\Core\Module{
 
   public function indexAction(){
-      return "index";
+      return [ "qqq" => "1121"];
   }
 
 }

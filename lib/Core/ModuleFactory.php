@@ -18,9 +18,9 @@ class ModuleFactory{
     try{
       $objectController = $this->loadObject($route);
       $action = $route->getAction();
-      $response->add( $objectController->$action() );
+      $response->add( $objectController->$action(), $objectController->responseType() );
     } catch ( \Exception $e ){
-      $response->add( $e );
+      $response->add( $e, 'array' );
     }
     return;
   }
