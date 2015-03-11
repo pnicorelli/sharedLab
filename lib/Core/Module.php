@@ -1,7 +1,7 @@
 <?php
 namespace wwcms\Core;
 
-class Module{
+class Module extends ModuleLogic{
     private $responseType;
 
     /**
