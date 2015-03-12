@@ -5,13 +5,13 @@ class Response{
   private $container;
   private $type; // html, text, json... used before flush for  decoratation
   private $template; // the directory in ./templates/ where fetch layouts
-  private $layout; // the page to use when decorate
+  private $view; // the page to use when decorate
 
   public function __construct(){
     $this->type = 'html';
     $this->container = [];
     $this->template = 'default';
-    $this->layout = 'index.html';
+    $this->view = 'index.html';
   }
 
   /**
@@ -19,8 +19,8 @@ class Response{
    * @param [type] $data the stuff to be added
    * @param [type] $type the type of data like html, text, array....
    */
-  public function add( $data, $type=null ){
-    $this->container[] = array( $type, $data);
+  public function add( $name, $value ){
+    $this->container[$name] = $value;
     return;
   }
 
@@ -28,9 +28,17 @@ class Response{
    * flush all the output generated
    */
   public function flush(){
-    echo "<pre>";
-    print_r($this->container);
-    echo "</pre>";
+    switch( $this->type ){
+      case "html":
+        $templateEngine = new TemplateEngine();
+        echo $templateEngine->render( $this->template, $this->view, $this->container );
+
+        break;
+      default:
+        echo "<pre>";
+        print_r($this);
+        echo "</pre>";
+    }
     return;
   }
 
@@ -40,8 +48,8 @@ class Response{
     $this->type = $type;
   }
 
-  public function setLayout($layout){
-    $this->layout = $layout;
+  public function setView($view){
+    $this->view = $view;
   }
 
   public function setTemplate($template){

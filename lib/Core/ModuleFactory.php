@@ -17,11 +17,16 @@ class ModuleFactory{
   public function build(Route $route, Response &$response){
     try{
       $objectController = $this->loadObject($route);
+
       $objectController->setResponse( $response );
+
       $action = $route->getAction();
       $objectController->$action();
     } catch ( \Exception $e ){
-      $response->add( $e, 'array' );
+
+      $response->setView( 'error.html' );
+      $response->add( "error", $e->getMessage() );
+      $response->add( "exception", $e );
     }
     return;
   }

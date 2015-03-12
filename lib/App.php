@@ -5,6 +5,7 @@ class App{
 
 
   public function run(){
+    $this->boot();
 
     try{
       // map the route
@@ -29,5 +30,10 @@ class App{
     }
   }
 
+  public function boot(){
+    // load authorization system (session is loaded here)
+    Core\Authorize::init();
+
+  }
 
 }
