@@ -30,6 +30,9 @@ class Response{
   public function flush(){
     switch( $this->type ){
       case "html":
+        $navigation = new Navigation();
+        $this->container["navigation"] = $navigation->getMenu();
+
         $templateEngine = new TemplateEngine();
         echo $templateEngine->render( $this->template, $this->view, $this->container );
 

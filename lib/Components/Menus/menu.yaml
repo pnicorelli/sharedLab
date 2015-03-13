@@ -1,0 +1,7 @@
+---
+name: Menus
+actions:
+    - href        : test
+      label       : Menu test
+      class       : nope
+      icon        : 

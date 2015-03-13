@@ -3,6 +3,7 @@
     "require": {
 
       "symfony/http-foundation": "~2.6",
+      "symfony/yaml": "3.0.*@dev",
       "twig/twig": "~1.0"
     },
     "authors": [

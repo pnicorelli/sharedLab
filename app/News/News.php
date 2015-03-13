@@ -8,8 +8,9 @@ class News extends  \wwcms\Core\Module{
   }
 
   public function lalistaAction(){
-    $data = $this->model->fetchAll();
-    return $this->render('list.html', [ "data" => $data]);
+
+    $this->response->add( 'content', 'Yoooop' );
+    return ;
   }
 
   public function ilsingoloAction(){

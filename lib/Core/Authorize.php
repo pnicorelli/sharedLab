@@ -22,7 +22,10 @@ public static function hasPermission( $name ){
 
 public static function isAuthenticated( ){
   $user = self::$session->get('user', false);
-  return isset( $user )?true:false;
+  return ( $user === false )?false:true;
 }
 
+public static function logout(){
+  return self::$session->invalidate();
+}
 }
