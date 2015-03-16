@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>wwCms - default theme</title>
+
+<style>
+html, body, div, span, ul, li, a, label{margin:0px, padding:0px; background: #dfdfdf;}
+#wrapper{width:100%; float:left;}
+#boxlogin{width:400px; margin-left:30%;background:#f0f0f0; padding:30px;margin-top:150px; border: 1px solid #000}
+#boxlogin input{width:250px; float:left;background:#fff; }
+#boxlogin label{width:90px; float:left;background:#f0f0f0;}
+</style>
+
+    </head>
+    <body>
+<div id="wrapper">
+      <form method="POST" action="{{ action }}">
+      <div id="boxlogin">
+        <label for="username">username</label><input id="username" name="username" placeholder="email@domain.com">
+        <label for="password">password</label><input id="password" name="password" type="password">
+        <div id="error"></div>
+        <button>login</button>
+      </div>
+      </form>
+</div>
+
+    </body>
+</html>
