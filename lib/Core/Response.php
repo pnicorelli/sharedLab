@@ -9,6 +9,8 @@ class Response{
   }
 
   public function flush(){
+    echo "<pre>";
     var_dump($this->container);
+    echo "</pre>";    
   }
 }

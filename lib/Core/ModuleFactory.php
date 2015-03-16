@@ -16,6 +16,7 @@ class ModuleFactory{
    */
   public function build(Route $route, Response &$response){
     try{
+    	// funzione che può lanciare delle eccezioni
       $objectController = $this->loadObject($route);
       $action = $route->getAction();
       $response->add( $objectController->$action() );
@@ -29,6 +30,8 @@ class ModuleFactory{
    * Check if class & method exists
    * @param Route $route [The parsed route]
    */
+   
+   // Route è un oggetto del nostro sistema. Route è come int, string. E' un vincolo sul tipo di dato
   public function loadObject(Route $route){
     $classController = $route->getController();
     if( !class_exists($classController) ){

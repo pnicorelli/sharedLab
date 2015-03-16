@@ -4,7 +4,7 @@ namespace Components\Index;
 class Index{
 
   public function indexAction(){
-      return "index";
+      return [ "qqq" => "1121"];
   }
 
 }

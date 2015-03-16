@@ -17,7 +17,7 @@ class App{
       $mf = new Core\ModuleFactory;
       $mf->build( $route, $response );
 
-      // get the response
+      // get the response  // -->add()  aggiunge della roba
       $response->flush();
 
     } catch ( \Exception $e){
