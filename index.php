@@ -8,3 +8,5 @@ use wwcms\App;
 $app = new App();
 
 $app->run();
+
+//null
