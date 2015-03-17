@@ -1,6 +1,9 @@
-# all files with .something are skipped
-RewriteCond %{REQUEST_URI} \..+$
-RewriteCond %{REQUEST_URI} !\.html$
-RewriteRule .* - [L]
-# the others are redirected to the front web controller
-RewriteRule ^(.*)$ index.php [QSA,L]
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteRule ^templates/(.*)$ templates/$1 [NC,L]
+
+RewriteRule /.* index.php [NC,L]
