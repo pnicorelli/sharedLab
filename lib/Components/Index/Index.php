@@ -31,7 +31,7 @@ class Index extends \wwcms\Core\Module{
 
   public function loginAction(){
     $this->response->setView('login.html');
-    $this->response->add( 'action', '/Components/Index/loginSubmit' );
+    $this->response->add( 'action', $this->getBaseUrl().'/Components/Index/loginSubmit' );
     return;
   }
 

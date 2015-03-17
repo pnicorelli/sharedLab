@@ -1,7 +1,6 @@
 <?php
 namespace wwcms\Core;
 use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\HttpFoundation\Request;
 
 class ComponentsManager{
 
@@ -43,8 +42,8 @@ class ComponentsManager{
 
 
   private function parseMenu($file){
-    $request = Request::createFromGlobals();
-    $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
+    $helper = new ModuleFilesystem();
+    $baseurl = $helper->getBaseUrl();
 
     $tmp["module"] = basename( dirname( $file[0] ) );
     $tmp["menu"] = Yaml::parse(file_get_contents( $file[0] ));
