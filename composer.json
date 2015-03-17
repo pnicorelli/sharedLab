@@ -1,9 +1,14 @@
 {
-    "name": "pnicorelli/sharedLab",
+    "name": "pnicorelli/shared-lab",
+    "description": "modelling, experimenting, crashing.... and so on",
+    "type": "testing",
+    "keywords": [],
+    "homepage": "https://github.com/pnicorelli/sharedLab/",
+    "license": "MIT",
     "require": {
 
       "symfony/http-foundation": "~2.6",
-      "symfony/yaml": "2.6.*@dev",
+      "symfony/yaml": "~2.6",
       "twig/twig": "~1.0"
     },
     "authors": [
