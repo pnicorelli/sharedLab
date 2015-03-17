@@ -10,6 +10,6 @@
 ```
 
 1. `git clone https://github.com/pnicorelli/sharedLab.git`
-2. `composer update`
+2. `composer install`
 3. `php -S 0.0.0.0:8080 index.php`
 4.  Browse on `http://localhost:8080`
