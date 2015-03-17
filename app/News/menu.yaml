@@ -1,0 +1,12 @@
+---
+name: Mod@Menu
+actions:
+    - href        : test
+      label       : Menu test
+      class       : nope
+      icon        :
+
+    - href        : altrotest
+      label       : Secondo test
+      class       : nope
+      icon        :

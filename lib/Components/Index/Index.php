@@ -1,5 +1,6 @@
 <?php
 namespace Components\Index;
+use \wwcms\Core\Authorize;
 
 class Index extends \wwcms\Core\Module{
 
@@ -8,8 +9,12 @@ class Index extends \wwcms\Core\Module{
       return  $this->loginAction();
     }
 
-    $this->response->setView('index.html');
-    $this->response->add( 'content', $this->getName() );
+    $content = "Il modulo si chiama: <b>".$this->getName()."</b><br>";
+
+    $user = Authorize::getUser();
+    $content .= "Tu sei loggato come: <b>".$user["username"]."</b><br>";
+
+    $this->response->add( 'content', $content );
 
     return ;
   }
@@ -18,9 +23,8 @@ class Index extends \wwcms\Core\Module{
     //$this->response->setType("raw");
     $username =  $this->getPost("username");
     $password =  $this->getPost("password");
-    $values = "You enter <b>$username</b> as username and <b>$password</b> as password";
-
-    $this->response->setView('index.html');
+    Authorize::login( $username, $password);
+    $values = "Hai messo <b>$username</b> come username e <b>$password</b> come password";
     $this->response->add( 'content', $values );
     return ;
   }

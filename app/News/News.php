@@ -3,20 +3,14 @@ namespace module\News;
 
 class News extends  \wwcms\Core\Module{
 
-  public function yoooAction(){
-    return "yooooo";
+  public function testAction(){
+
+    $this->response->add( 'content', 'Questo &egrave; un modulo' );
   }
 
-  public function lalistaAction(){
-
-    $this->response->add( 'content', 'Yoooop' );
+  public function altrotestAction(){
+    $this->response->add( 'content', 'Questo &egrave; un\'altra azione del modulo' );
     return ;
   }
-
-  public function ilsingoloAction(){
-    $data = $this->model->fetchOne();
-    return $this->render('item.html', [ "data" => $data]);
-  }
-
 
 }

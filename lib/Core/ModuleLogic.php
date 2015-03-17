@@ -23,8 +23,10 @@ class ModuleLogic extends ModuleFilesystem{
   public function isAuthenticated( ){
     return Authorize::isAuthenticated( );
   }
+
   public function logout( ){
     return Authorize::logout( );
   }
+
 
 }

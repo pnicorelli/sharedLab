@@ -13,13 +13,11 @@ class ComponentsManager{
     $Regex = new \RegexIterator($Iterator, '/^.+menu\.yaml$/i', \RecursiveRegexIterator::GET_MATCH);
     $result =[];
     foreach( $Regex as $index => $file ){
-
-      $tmp["module"] = basename( dirname( $file[0] ) );
-      $tmp["menu"] = Yaml::parse(file_get_contents( $file[0] ));
-      $result[] = $tmp;
+      $result[] = $this->parseMenu($file);
     }
     return [ "module" => $result ];
   }
+
   /**
    * retrieve all module
    */
@@ -29,10 +27,7 @@ class ComponentsManager{
     $Regex = new \RegexIterator($Iterator, '/^.+menu\.yaml$/i', \RecursiveRegexIterator::GET_MATCH);
     $result =[];
     foreach( $Regex as $index => $file ){
-
-      $tmp["module"] = basename( dirname( $file[0] ) );
-      $tmp["menu"] = Yaml::parse(file_get_contents( $file[0] ));
-      $result[] = $tmp;
+      $result[] = $this->parseMenu($file);
     }
     return [ "Components" => $result ];
   }
@@ -45,4 +40,17 @@ class ComponentsManager{
     return $sum;
   }
 
+
+  private function parseMenu($file){
+
+    $tmp["module"] = basename( dirname( $file[0] ) );
+    $tmp["menu"] = Yaml::parse(file_get_contents( $file[0] ));
+
+    foreach( $tmp["menu"]["actions"] as $index => $link ){
+      $rootnamespace = ( basename( dirname(dirname($file[0])) ) == "Components" ) ? "Components" : "module";
+
+      $tmp["menu"]["actions"][$index]["href"] = "/".$rootnamespace."/".basename( dirname($file[0]) )."/".$tmp["menu"]["actions"][$index]["href"];
+    }
+    return $tmp;
+  }
 }
