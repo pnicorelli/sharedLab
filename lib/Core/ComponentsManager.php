@@ -1,6 +1,7 @@
 <?php
 namespace wwcms\Core;
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\HttpFoundation\Request;
 
 class ComponentsManager{
 
@@ -42,6 +43,9 @@ class ComponentsManager{
 
 
   private function parseMenu($file){
+    $request = Request::createFromGlobals();
+    $path = $request->getPathInfo();
+
     $helper = new ModuleFilesystem();
     $baseurl = $helper->getBaseUrl();
 
@@ -50,8 +54,11 @@ class ComponentsManager{
 
     foreach( $tmp["menu"]["actions"] as $index => $link ){
       $rootnamespace = ( basename( dirname(dirname($file[0])) ) == "Components" ) ? "Components" : "module";
-
-      $tmp["menu"]["actions"][$index]["href"] = $baseurl."/".$rootnamespace."/".basename( dirname($file[0]) )."/".$tmp["menu"]["actions"][$index]["href"];
+      $basehref = "/".$rootnamespace."/".basename( dirname($file[0]) )."/".$tmp["menu"]["actions"][$index]["href"];
+      $tmp["menu"]["actions"][$index]["href"] = $baseurl.$basehref;
+      if( $basehref == $path){
+        $tmp["menu"]["actions"][$index]["class"] .= " navigation-current";
+      }
     }
     return $tmp;
   }

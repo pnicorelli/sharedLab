@@ -1,7 +1,7 @@
 ---
-name: Menus
+name: Mio Menu
 actions:
     - href        : test
-      label       : Menu test
-      class       : nope
-      icon        : 
+      label       : Primo
+      class       : yoooo
+      icon        :
