@@ -1,5 +1,11 @@
-<ul id="navigation">
-{% for item in navigation %}
-    <li><a href="{{ item.href }}">{{ item.label }}</a></li>
+{% for key,section in navigation %}
+<div class="navigation-section">{{ key }}</div>
+  {% for module in section %}
+    <div class="navigation-module {{ module.menu.class }}">{{ module.menu.name }}</div>
+    <ul class="navigation-menu">
+      {% for item in module.menu.actions %}
+        <li class="{{ item.class }}"><a href="{{ item.href }}">{{ item.label }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
 {% endfor %}
-</ul>

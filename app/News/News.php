@@ -1,19 +1,20 @@
 <?php
-namespace module\products;
+namespace module\News;
 
-class products{
+class News extends  \wwcms\Core\Module{
 
   public function yoooAction(){
     return "yooooo";
   }
 
   public function lalistaAction(){
-    $data = $this->fetchAll();
-    return $this->render('list.html', [ "data" => $data]);
+
+    $this->response->add( 'content', 'Yoooop' );
+    return ;
   }
 
   public function ilsingoloAction(){
-    $data = $this->fetchOne();
+    $data = $this->model->fetchOne();
     return $this->render('item.html', [ "data" => $data]);
   }
 

@@ -1,0 +1,13 @@
+---
+name: Dashboard
+class: navigation-home
+actions:
+    - href        : index
+      label       : Home
+      class       : nope
+      icon        :
+
+    - href        : logout
+      label       : Logout
+      class       : nope
+      icon        :

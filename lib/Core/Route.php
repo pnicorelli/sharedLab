@@ -76,9 +76,11 @@ class Route{
     $array = explode("/", $request->getPathInfo());
     $array = array_filter($array , 'strlen' );
 
-    $component = array_shift($array);
-    $controller = array_shift($array);
-    $action = array_shift($array);
+    $component = array_shift($array);  // IL PRIMO PEZZO E' IL MIO COMPONENT
+    $controller = array_shift($array); // IL SECONDO PEZZO E' IL CONTROLLER
+    $action = array_shift($array); // IL TERZO PEZZO E' L'AZIONE
+    
+    
     $component = !is_null( $component ) ? $component : "Components";
 
     $controller = !is_null( $controller ) ? $controller : "Index";
